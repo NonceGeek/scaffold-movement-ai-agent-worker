@@ -5,6 +5,10 @@
 ## Base URL
 
 ```
+https://x402.leeduckgo.com
+```
+
+```
 http://localhost:4402
 ```
 
