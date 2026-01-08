@@ -18,13 +18,12 @@ const PAYMENT_CONFIG = {
   "GET /api/premium-content": {
     network: "movement",
     asset: "0x1::aptos_coin::AptosCoin",
-    maxAmountRequired: "1", // The minimal $MOVE
-    description: "pay token to get Coupon.",
+    maxAmountRequired: "100000000", // The maximum amount of $MOVE
+    description: "pay less than 1 $MOVE to get Coupon.",
     mimeType: "application/json",
     maxTimeoutSeconds: 600
   }
 };
-
 // Admin password verification function
 async function verifyAdminPassword(
   context: any,
@@ -148,7 +147,7 @@ router
       context.response.body = { error: "Could not load documentation" };
     }
   })
-  .get("/v2/docs/html", async (context) => {
+  .get("/docs/html", async (context) => {
     try {
       // Read README.md file
       const readmeText = await Deno.readTextFile("./apidoc.md");
