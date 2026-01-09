@@ -18,8 +18,8 @@ const PAYMENT_CONFIG = {
   "GET /api/premium-content": {
     network: "movement",
     asset: "0x1::aptos_coin::AptosCoin",
-    maxAmountRequired: "100000000", // The maximum amount of $MOVE
-    description: "pay less than 1 $MOVE to get Coupon.",
+    maxAmountRequired: "1", // The maximum amount of $MOVE
+    description: "pay 0.000001 $MOVE to get Coupon.",
     mimeType: "application/json",
     maxTimeoutSeconds: 600
   }
@@ -53,13 +53,15 @@ async function x402PaywallMiddleware(context: Context, next: () => Promise<unkno
   }
   
   const paymentHeader = context.request.headers.get("X-PAYMENT");
+  // console.log("paymentHeader:", paymentHeader);
   
   // If no payment header, return 402 with payment details
   if (!paymentHeader) {
     context.response.status = 402;
     context.response.headers.set("Content-Type", "application/json");
     context.response.headers.set("Access-Control-Expose-Headers", "X-PAYMENT-RESPONSE");
-    context.response.headers.set("X-PAYMENT-RESPONSE", JSON.stringify({
+    
+    const paymentDetails = {
       network: paymentConfig.network,
       payTo: Deno.env.get("MOVEMENT_PAY_TO"),
       asset: paymentConfig.asset,
@@ -68,17 +70,22 @@ async function x402PaywallMiddleware(context: Context, next: () => Promise<unkno
       mimeType: paymentConfig.mimeType,
       maxTimeoutSeconds: paymentConfig.maxTimeoutSeconds,
       facilitatorUrl: FACILITATOR_URL
-    }));
+    };
+    
+    context.response.headers.set("X-PAYMENT-RESPONSE", JSON.stringify(paymentDetails));
+    
+    // Return payment details in body for client compatibility
     context.response.body = {
       error: "Payment Required",
-      message: "Please include X-PAYMENT header with payment proof"
+      message: "Please include X-PAYMENT header with payment proof",
+      accepts: [paymentDetails]  // Add accepts array for client
     };
     return;
   }
   
   // Verify payment with facilitator
   try {
-    const paymentData = JSON.parse(paymentHeader);
+    const paymentData = paymentHeader;
     // !!! IN THE TEST ENVIRONMENT, ALWAYS RESP OK Here.
     // !!! REMEMBER TO RECOVER THE VERIFICATION IN THE PRODUCTION ENVIRONMENT.
 
@@ -134,8 +141,20 @@ router
   })
   .get("/api/premium-content", (context) => {
     // Premium content endpoint (protected by x402 paywall)
-    context.response.status = 302;
-    context.response.headers.set("Location", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+    // one way: redirect to a web page
+    // context.response.status = 302;
+    // context.response.headers.set("Location", "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+    // second way: return a JSON resp(Here is the example resp).
+    context.response.body = {
+      "coupon": "0x4C43e5c0a2DF68d2F2E5Df9f45b96963bE182187",
+      "privateKey": "0xfda5841cd51de62ea90a8d451d18524a17e4346a5ba64bc70e3d9bd2a2624b87",
+      "createdAt": "2025-12-21 10:44:32.949167+00",
+      // "fee": "3300000",
+      "fee_formated": "0.000001",
+      "fee_unit": "MOVE",
+      "issuer": "641f2ecf-a3d4-456d-ad58-39a2146e71db",
+      "if_used": false,
+    };
   })
   .get("/docs", async (context) => {
     try {
@@ -214,7 +233,8 @@ app.use(async (context, next) => {
 
 // Middleware: CORS for all routes
 app.use(oakCors({
-  origin: "http://localhost:3000",
+  origin: "*",
+  allowedHeaders: "*",
   exposedHeaders: ["X-PAYMENT-RESPONSE"]
 }));
 
@@ -225,7 +245,7 @@ app.use(x402PaywallMiddleware);
 app.use(router.routes());
 
 // Start server
-const port = Deno.env.get("PORT") || 4402;
+const port = Deno.env.get("SERVER_PORT") || 4403;
 
 console.info(`
   🚀 CORS-enabled web server listening on port ${port}

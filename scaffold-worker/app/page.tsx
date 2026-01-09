@@ -99,7 +99,7 @@ export default function Home() {
               <br></br>
               Open the{" "}
               <a
-                href="https://market.leeduckgo.com"
+                href="https://agent-market.leeduckgo.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline hover:text-foreground transition-colors"
@@ -121,7 +121,7 @@ export default function Home() {
               <div className="flex-shrink-0">
                 <Image
                   src="/avatar.png"
-                  alt="Hackathon Project Analyzer"
+                  alt="轻量程序生成大师LeanCoder"
                   width={96}
                   height={96}
                   className="rounded-full border-2 border-primary/20 shadow-md object-cover"
@@ -130,7 +130,7 @@ export default function Home() {
               {/* Info */}
               <div className="flex-1 text-center sm:text-left space-y-2">
                 <h2 className="text-2xl font-bold text-foreground">
-                  Hackathon Project Analyzer
+                  轻量程序生成大师LeanCoder
                 </h2>
                 <div className="flex items-center justify-center sm:justify-start gap-2 text-sm text-muted-foreground">
                   <span>Movement Address:</span>
@@ -148,8 +148,9 @@ export default function Home() {
                   </button>
                 </div>
                 <p className="text-muted-foreground">
-                  An experienced hackathon expert who can evaluate projects,
-                  provide feedback, and help improve your submissions.
+                Generate a micro pragram as a real human programmer
+                <br></br>
+                像人类工程师一样帮你生成轻量级的程序。
                 </p>
                 <div className="flex flex-wrap justify-center sm:justify-start gap-2 pt-2">
                   <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">
@@ -179,15 +180,15 @@ export default function Home() {
               AI ChatBot
             </h3>
             <p className="text-muted-foreground mb-4">
-              Chat with the Hackathon Project Analyzer for free. Get instant feedback and suggestions for your hackathon projects.
+              Chat with the LeanCoder for free. Generate the micro program automatically!(Attention: This is just an example now!)
             </p>
             <a
-              href="https://analyzer.rootmud.xyz/"
+              href="https://chatgpt.com/g/g-OYRq55TRG-lovable-website-html-css-js-code-generator-maker"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
             >
-              Hackathon Project Analyzer ChatBot
+              LeanCoder ChatBot
               <ExternalLink className="h-4 w-4" />
             </a>
           </div>
@@ -209,25 +210,21 @@ export default function Home() {
             <p className="text-muted-foreground mb-4">
               Unlock an exclusive coupon by making a micro-payment through the x402 protocol. 
               Use Coupon, the agent could solve more complex tasks compared to the free tier.
+              <br></br>
+              For Example, you could submit the prompt like that:
+              <br></br>
+              「」
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
-              <button
-                onClick={handleGetCoupon}
-                disabled={isPaymentLoading || !isConnected}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isPaymentLoading ? (
-                  <>
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                    Processing...
-                  </>
-                ) : (
-                  <>
-                    <Ticket className="h-4 w-4" />
-                    {isConnected ? "Pay & Get Coupon" : "Connect Wallet First"}
-                  </>
-                )}
-              </button>
+             {connected && account?.address ? (
+          <WalletDemoContent />
+        ) : (
+          <WalletSelectionModal>
+            <Button size="lg" className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed">
+              Connect Wallet First!
+            </Button>
+          </WalletSelectionModal>
+        )}
 
               <a
                 href="https://agent-market.leeduckgo.com/"
@@ -241,27 +238,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        {/* {connected && account?.address ? (
-          <WalletDemoContent />
-        ) : (
-          <div className="max-w-2xl mx-auto text-center space-y-8">
-            <div className="space-y-4">
-              <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-                Movement Network
-              </h1>
-              <p className="text-xl text-muted-foreground">
-                Connect your wallet to start interacting with Movement Network
-              </p>
-            </div>
-
-            <WalletSelectionModal>
-              <Button size="lg" className="text-lg px-8 py-6">
-                Connect Wallet
-              </Button>
-            </WalletSelectionModal>
-          </div>
-        )} */}
       </main>
 
       <footer className="border-t border-border mt-auto">

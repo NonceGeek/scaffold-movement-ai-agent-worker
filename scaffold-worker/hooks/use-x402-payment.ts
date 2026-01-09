@@ -34,6 +34,8 @@ export function useX402Payment() {
     // Sign with wallet
     const signed = await signTransaction({ transactionOrPayload: tx });
 
+    console.log("signed", signed);
+
     // Extract bytes from wallet's nested response and use SDK classes for BCS serialization
     const pubKeyBytes = toBytes(signed.authenticator.public_key.key.data);
     const sigBytes = toBytes(signed.authenticator.signature.data.data);
@@ -46,6 +48,9 @@ export function useX402Payment() {
       signatureBcsBase64: Buffer.from(authenticator.bcsToBytes()).toString("base64"),
       transactionBcsBase64: Buffer.from(tx.bcsToBytes()).toString("base64"),
     });
+
+    // return "{\"proof\":\"paymentPayment\"}";
+
   };
 
   return { payForAccess, isConnected: !!account };
