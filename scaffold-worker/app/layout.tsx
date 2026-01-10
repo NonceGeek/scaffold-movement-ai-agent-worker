@@ -17,8 +17,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Movement Network - Connect Wallet Template",
-  description: "A Next.js template for building dApps on Movement Network with wallet integration",
+  title: "Scaffold Movement AI Agent Worker",
+  description: "A ️scaffold based on x402 Protocol and Vibe Coding, is designed to generate AI Agent Workers.",
+  icons: {
+    icon: "/avatar.png",
+    shortcut: "/avatar.png",
+    apple: "/avatar.png",
+  },
 };
 
 export default function RootLayout({

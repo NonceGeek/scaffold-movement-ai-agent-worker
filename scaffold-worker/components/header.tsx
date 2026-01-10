@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Menu, X, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -20,8 +21,15 @@ export function Header() {
   return (
     <header className="border-b border-border relative">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link href="/" className="text-2xl font-bold text-foreground hover:text-primary transition-colors">
-          Scaffold AI Agent Worker
+        <Link href="/" className="flex items-center gap-3 text-2xl font-bold text-foreground hover:text-primary transition-colors">
+          <Image
+            src="/avatar.png"
+            alt="AI Agent Logo"
+            width={32}
+            height={32}
+            className="rounded-full"
+          />
+          <span>Scaffold AI Agent Worker</span>
         </Link>
         
         {/* Desktop Navigation */}

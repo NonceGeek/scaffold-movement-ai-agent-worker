@@ -99,7 +99,7 @@ export default function Home() {
               <br></br>
               Open the{" "}
               <a
-                href="https://agent-market.leeduckgo.com"
+                href="https://agent-market.leeduckgo.com/agents"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline hover:text-foreground transition-colors"
@@ -213,7 +213,7 @@ export default function Home() {
               <br></br>
               For Example, you could submit the prompt like that:
               <br></br>
-              「」
+              「Generate an online letter for my fans and record the number of visits, and deploy it to my domain: https://letter.leeduckgo.com.」
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
              {connected && account?.address ? (
@@ -227,7 +227,7 @@ export default function Home() {
         )}
 
               <a
-                href="https://agent-market.leeduckgo.com/"
+                href="https://agent-market.leeduckgo.com/?submit_task"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium"

@@ -207,7 +207,7 @@ export function PremiumContent() {
                 <p className="text-sm text-blue-800 dark:text-blue-200">
                   💡 <strong>Next Step:</strong> Use this coupon in the{" "}
                   <a
-                    href="https://agent-market.leeduckgo.com/"
+                    href={`https://agent-market.leeduckgo.com/?submit_task&coupon=${couponData.coupon}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="underline font-medium"
