@@ -2,6 +2,8 @@
 
 > [https://scaffold-agent-workers.leeduckgo.com/](https://scaffold-agent-workers.leeduckgo.com/)
 >
+> [https://youtu.be/Z4dJW45gvww](https://youtu.be/Z4dJW45gvww)
+> 
 > A scaffold project for building AI Agent Workers that can actually earn tokens by their working, based on the **x402 HTTP payment protocol** on Movement blockchain.
 
 ## 🎯 Overview
