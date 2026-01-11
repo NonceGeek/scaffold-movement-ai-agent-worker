@@ -1,14 +1,26 @@
 Here is the prompts as the generator of agent@_@!!
 
 > STEP1: Generate the basic info of the AI Agent.
+>
 > ↓
+>
 > STEP2: Register the AI Agent in the AI Agent Market.
+>
 > ↓
-> STEP3: Generate the .env file.
+>
+> STEP3: Register MoveDID for AI Agent on Movement(Optional).
+>
 > ↓
-> STEP4: Generate a Chatbot for your Agent.
+>
+> STEP4: Generate the .env file.
+>
 > ↓
-> STEP5: Deploy the agent on the Vercel.
+>
+> STEP5: Generate a Chatbot for your Agent.
+>
+> ↓
+>
+> STEP6: Deploy the agent on the Vercel.
 >
 > Got your online AI Agent!
 
@@ -102,7 +114,11 @@ You have created an AI Agent Worker with basic information. Now you need to regi
 **Note:** If the agent market has a specific API or submission format, follow their documentation. Otherwise, use the web interface at https://agent-market.leeduckgo.com/agents.
 ```
 
-## STEP3: Generate the .env file.
+## STEP3: Register MoveDID for AI Agent on Movement(Optional).
+
+TODO.
+
+## STEP4: Generate the .env file.
 
 **Prompt:**
 ```
@@ -176,12 +192,10 @@ Backend (shell environment or deployment platform):
 MOVEMENT_PAY_TO=0x5cf8ed0e6b49da5d87ba69c4e50aa9b78c57bf0dd446f9889c8f8b5e57b0f336
 PORT=4403
 ```
-```
-
-## STEP4: Generate a Chatbot for your Agent.
+## STEP5: Generate a Chatbot for your Agent.
 
 **Prompt:**
-```
+
 You need to create a chatbot interface for your AI Agent's free tier functionality. This chatbot will be accessible to all users without payment.
 
 **Option 1: Using ChatGPT GPTs (Recommended for Quick Setup)**
@@ -278,15 +292,14 @@ For a scaffold/prototype, use Option 1 (ChatGPT GPTs) as it's the fastest to set
 2. Ensure it aligns with your agent's description and capabilities
 3. Update the free tier section in your frontend with the chatbot link
 4. Document the chatbot URL in your agent market registration (STEP2)
-```
-
-## STEP5: Deploy the agent on the Vercel.
+## STEP6: Deploy the agent on the Vercel.
 
 **Prompt:**
-```
+
 You are ready to deploy your AI Agent Worker frontend to Vercel for public access.
 
 **Prerequisites:**
+
 - ✅ Frontend code is complete and tested locally
 - ✅ Backend server is deployed (Deno Deploy or other hosting)
 - ✅ Environment variables are configured
@@ -433,9 +446,6 @@ NEXT_PUBLIC_X402_SERVER_URL = https://x402.leeduckgo.com
 - Configure CDN caching for static assets
 - Enable automatic HTTPS
 - Set up staging environment for testing before production
-```
-
 ---
-
 **Usage Instructions:**
 Each step above contains a detailed prompt that can be used with an AI assistant (like ChatGPT, Claude, or Cursor AI) to guide you through creating and deploying your AI Agent Worker. Follow the steps sequentially, as each step builds upon the previous one.
